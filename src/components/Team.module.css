@@ -1,0 +1,185 @@
+.section {
+  padding: var(--pad-y) var(--pad-x);
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* 2 colonnes : texte 50% | cards 50% */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hl {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.72;
+  margin-bottom: 20px;
+}
+
+.contact {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.6;
+}
+
+/* 3 cards sur une ligne, se chevauchent légèrement */
+.cards {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  margin-left: -12px;
+}
+
+.card {
+  background: #FAF8F5;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  padding: 32px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 170px;
+  flex-shrink: 0;
+  margin-left: -12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  position: relative;
+}
+
+.card:hover {
+  z-index: 3;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+}
+
+/* Card du milieu au-dessus pour l'effet de chevauchement */
+.card:nth-child(2) { z-index: 2; }
+
+.tiltLeft  { transform: rotate(-4deg); z-index: 1; }
+.tiltRight { transform: rotate(4deg);  z-index: 1; }
+
+/* Cartes latérales : même hover que le fondateur, en bleu */
+.tiltLeft:hover,
+.tiltRight:hover {
+  border-color: var(--blue);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14), 0 0 30px rgba(26, 58, 143, 0.25);
+}
+
+.tiltLeft:hover  { transform: rotate(-4deg) translateY(-10px) scale(1.03); }
+.tiltRight:hover { transform: rotate(4deg) translateY(-10px) scale(1.03); }
+
+.tiltLeft:hover .avatar,
+.tiltRight:hover .avatar {
+  box-shadow: 0 0 24px rgba(26, 58, 143, 0.4);
+}
+
+/* Hover spécial pour le fondateur — .card.founder pour battre :nth-child(2) */
+.card.founder:hover {
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14), 0 0 30px rgba(245, 166, 35, 0.25);
+  transform: translateY(-10px) scale(1.03);
+}
+
+.card.founder:hover .avatar {
+  box-shadow: 0 0 24px rgba(245, 166, 35, 0.4);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.avatar span {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.card:hover .avatar {
+  transform: scale(1.12);
+}
+
+.av1 { background: linear-gradient(135deg, #F5A623, #E8920A); }
+.av2 { background: linear-gradient(135deg, #1A3A8F, #2E5CB8); }
+.av3 { background: linear-gradient(135deg, #F5A623, #D4880A); }
+
+.card h5 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 3px;
+  transition: color 0.25s ease;
+}
+
+.card:hover h5 {
+  color: var(--blue);
+}
+
+.role {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.email {
+  font-size: 10px;
+  color: var(--gold);
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  word-break: break-all;
+}
+
+.email:hover {
+  opacity: 0.75;
+}
+
+/* Mobile : texte en haut, cards en dessous */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 40px; }
+  .cards { justify-content: center; }
+}
+
+@media (max-width: 720px) {
+  .card { width: 150px; padding: 28px 16px 20px; }
+  .avatar { width: 48px; height: 48px; }
+}
+
+@media (max-width: 500px) {
+  .tiltLeft, .tiltRight { transform: none; }
+  .tiltLeft:hover, .tiltRight:hover { transform: translateY(-6px) scale(1.03); }
+  .card { width: 130px; padding: 24px 12px 18px; margin-left: -8px; }
+  .cards { margin-left: -8px; }
+  .card.founder:hover { transform: translateY(-6px) scale(1.03); }
+}

@@ -1,0 +1,113 @@
+.section {
+  padding: var(--pad-y) var(--pad-x);
+  background: var(--dark);
+  color: var(--white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.label { color: var(--gold); }
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.8vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 16px;
+  margin-top: 4px;
+}
+
+.desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.72;
+  margin-bottom: 40px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.infoLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.infoValue {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+  display: block;
+  transition: opacity 0.18s;
+}
+
+a.infoValue:hover { opacity: 0.7; }
+
+.formWrap,
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formWrap {
+  height: 100%;
+}
+
+.input {
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  width: 100%;
+}
+
+.input::placeholder { color: rgba(255, 255, 255, 0.28); transition: color 0.25s ease; }
+.input:hover { border-color: rgba(255, 255, 255, 0.2); }
+.input:focus {
+  border-color: var(--gold);
+  background: #202020;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+  transform: translateY(-1px);
+}
+.input:focus::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.status {
+  font-size: 13px;
+  color: var(--gold);
+  min-height: 18px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: 1fr; gap: 52px; }
+}

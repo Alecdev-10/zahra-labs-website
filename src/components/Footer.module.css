@@ -1,0 +1,137 @@
+.footer {
+  padding: 52px var(--pad-x) 36px;
+  background: var(--dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.brand .logo {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.brand .logo em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.brand .tagline {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.65;
+  max-width: 220px;
+}
+
+.brand .legal {
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.col h4 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 18px;
+}
+
+.col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.col a {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-block;
+}
+
+.col a:hover {
+  color: var(--white);
+  transform: translateX(4px);
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.socials {
+  display: flex;
+  gap: 20px;
+}
+
+.socials a {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.socials a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.socials a:hover {
+  color: var(--white);
+}
+
+.socials a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand brand"
+      "piliers services"
+      "naviguer naviguer";
+    gap: 28px 20px;
+    margin-bottom: 36px;
+  }
+  .brand { grid-area: brand; }
+  .col:nth-child(2) { grid-area: piliers; }
+  .col:nth-child(3) { grid-area: services; }
+  .col:nth-child(4) { grid-area: naviguer; }
+  .col:nth-child(4) ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+  .bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .socials { justify-content: center; }
+}
