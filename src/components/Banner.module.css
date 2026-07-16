@@ -1,0 +1,105 @@
+.banner {
+  padding: 88px var(--pad-x);
+  background: linear-gradient(135deg, var(--blue) 0%, #0D1F4A 60%, #0a1535 100%);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Scrolling tag ticker ───────────────────── */
+.ticker {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 18px;
+}
+
+.tickerRow {
+  display: flex;
+  gap: 16px;
+  white-space: nowrap;
+  animation: ticker 28s linear infinite;
+  flex-shrink: 0;
+}
+
+.tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.33%); }
+}
+
+/* ── Floating particles ─────────────────────── */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(245, 166, 35, 0.5);
+  left: calc(10% + var(--i) * 9%);
+  top: calc(20% + (var(--i) * 13%) % 60%);
+  animation: floatDot calc(5s + var(--i) * 0.7s) ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.6s);
+}
+
+@keyframes floatDot {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50%       { transform: translateY(-18px) scale(1.4); opacity: 1; }
+}
+
+/* ── Main content ───────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.content p {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.8vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  color: var(--white);
+  max-width: 640px;
+  margin: 0 auto;
+  transition: transform 0.5s ease;
+}
+
+.banner:hover .content p {
+  transform: scale(1.02);
+}
+
+/* ── Animated gold accent line ──────────────── */
+.accentLine {
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
+  margin: 28px auto 0;
+  animation: expandLine 3s ease-in-out infinite;
+}
+
+@keyframes expandLine {
+  0%, 100% { width: 48px; opacity: 0.7; }
+  50%       { width: 120px; opacity: 1; }
+}
