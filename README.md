@@ -65,6 +65,9 @@ Installer les dépendances :
 ```bash
 npm install
 ```
+```bash
+npm install @emailjs/browser
+```
 
 Lancer le serveur de développement :
 
